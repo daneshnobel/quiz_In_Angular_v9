@@ -1,0 +1,27 @@
+
+<div class="game-container d-flex justify-content-center align-items-center">
+
+  <div class="card d-flex mt-4" *ngIf="currQuestion!=null;else QuestionNotFound ">
+    <div class="heading px-2 pt-2 d-flex flex-row justify-content-between"><span>Level - Beginner</span>  <span class="remaining-status">{{totalQuestions - (questionIndex+1)}} of {{totalQuestions}} remaining</span></div>
+    <div class="content px-3 py-3 d-flex flex-column">
+      <span>{{currQuestion.q}}</span>
+      <span class="option d-flex align-items-center px-3 mt-2"(click) = "chooseOption($event.target)" >{{currQuestion.option1}}</span>
+      <span class="option d-flex align-items-center px-3 mt-2"(click) = "chooseOption($event.target)" >{{currQuestion.option2}}</span>
+      <span class="option d-flex align-items-center px-3 mt-2"(click) = "chooseOption($event.target)" >{{currQuestion.option3}}</span>
+      <span class="option d-flex align-items-center px-3 mt-2"(click) = "chooseOption($event.target)" >{{currQuestion.option4}}</span>
+    </div>
+    <div class="submit-pane d-flex px-3 justify-content-end">
+      <button class="btn btn-primary btn-lg" (click)= "nextQuestion($event.target)" >Next Question</button>
+    </div>
+  </div>
+  <ng-template #QuestionNotFound>
+    Question not loaded due to some internal issues. Please refresh the page!
+  </ng-template>
+</div>
+
+<div id="overlay" class=" d-none justify-content-center align-items-center" (click)="overlayOff()">
+  <div class="d-flex content px-2 justify-content-around">
+    <span class="sm-2 md-2 pr-2"><i class="fa fa-check-circle" style="font-size:35px;color:#86ce21"></i></span>
+    <span> {{message}}</span>
+  </div>
+</div>

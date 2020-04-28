@@ -1,0 +1,83 @@
+.game-container{
+  min-height:300px;
+  min-width: 100%;
+
+
+}
+.card{
+  background: #fff;
+  margin:10px;
+  padding: 5px;
+  min-height: 400px;
+  min-width: 800px;
+  .heading{
+    background: #f2f2f2;
+    height: 50px;
+    color:#868686;
+    font-size:x-large;
+    .remaining-status{
+      font-size: large;
+    }
+  }
+  border-radius: 5px;
+  .content{
+    color:#868686;
+    font-size:large;
+    .option{
+      border:1px solid #f2f2f2;
+      min-height: 45px;
+      transition:all 1s;
+      &:hover{
+        cursor: pointer;
+      }
+      &.incorrect{
+        color:#fff;
+        background-color: #ea3939;
+        border: 2px solid rgba(215, 215, 214, 0.7);
+        border-radius: 6px;
+      }
+      &.correct{
+        color:#fff;
+        background-color: #86ce21;
+        border: 2px solid rgba(215, 215, 214, 0.7);
+        border-radius: 6px;
+      }
+    }
+
+  }
+  .submit-pane{
+    .btn{
+      border-radius: 0;
+      width:175px;
+    }
+  }
+}
+
+@media (min-width:630px){
+  .game-container{
+    min-height:400px;}
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  .content{
+      margin:auto;
+
+      height:100px;
+      font-size:x-large;
+      font-weight: bold;
+      color:#fff;
+
+  }
+}
+

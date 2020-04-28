@@ -1,0 +1,11 @@
+
+ <div class="welcome-card d-flex mt-4 flex-column justify-content-center align-items-center" >
+  <img src="../../assets/avatar.jpg"class="img-fluid" style="max-width:75%" >
+  <div class="content px-3 mt-3 d-flex flex-column align-items-center ">
+    <span>Please Enter Your Name!</span>
+    <input [(ngModel)]="userName"/>
+  </div>
+  <div class="submit-pane px-3 mt-3">
+    <button class="btn btn-primary btn-lg" (click)="Enter()" >Submit</button>
+  </div>
+</div>

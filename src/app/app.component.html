@@ -1,0 +1,18 @@
+<style>
+
+</style>
+<div class="toolbar sticky-top" role="banner">
+ <span class="score d-hidden">You Score: {{score}}</span>
+ <span >Welcome To QuizTime</span>
+ <span class="user d-hidden">{{userName}}</span>
+</div>
+<div class="container d-flex justify-content-center align-items-center" role="main">
+  <!-- Highlight Card -->
+    <router-outlet  (activate)='OnActivate($event)'></router-outlet>
+  <!-- Footer -->
+</div>
+<footer class="fixed-bottom footer d-flex justify-content-center align-items-center">
+  <p> © Copyright 2020 | all rights reserved </p>
+  </footer>
+
+
