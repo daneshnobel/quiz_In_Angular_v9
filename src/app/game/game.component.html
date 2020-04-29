@@ -19,7 +19,8 @@
   </ng-template>
 </div>
 
-<div id="overlay" class=" d-none justify-content-center align-items-center" (click)="overlayOff()">
+<div id="overlay" class="justify-content-center align-items-center"
+ [ngClass] = "{'d-flex':showOverlay,'d-none':!showOverlay}" (click)="overlayOff()">
   <div class="d-flex content px-2 justify-content-around">
     <span class="sm-2 md-2 pr-2"><i class="fa fa-check-circle" style="font-size:35px;color:#86ce21"></i></span>
     <span> {{message}}</span>

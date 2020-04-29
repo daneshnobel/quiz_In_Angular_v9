@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { QuestionsService } from '../questions.service';
 import {Question} from '../question';
-import * as jQuery from 'jquery';
+// import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-game',
@@ -18,16 +18,18 @@ export class GameComponent implements OnInit {
   isQuestionAnswered:boolean = false;
   message:string = null;
   userName:string = null;
+  showOverlay = false;
    @Output() emitScore: EventEmitter<string> = new EventEmitter<string>();
-
+   @Output() displayHeader: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private questionService : QuestionsService) {
   }
 
   ngOnInit(): void {
 
-    jQuery('.toolbar .user').removeClass('d-hidden');
-    jQuery('.toolbar .score').removeClass('d-hidden');
+    // jQuery('.toolbar .user').removeClass('d-hidden');
+    // jQuery('.toolbar .score').removeClass('d-hidden');
+    this.displayHeader.emit(true);
     this.questions = QuestionsService.getQuestions();
     this.currQuestion = null;
     this.totalQuestions = this.questions.length;
@@ -84,14 +86,14 @@ export class GameComponent implements OnInit {
     }
     else{
       this.message = "You have finished the Quiz !.Please click anywhere to return."
-      jQuery('#overlay').removeClass('d-none').addClass('d-flex');
+      this.showOverlay = true;
     }
 
   }
 
   overlayOff(): void{
     debugger;
-    jQuery('#overlay').addClass('d-none').removeClass('d-flex');
+   this.showOverlay = false;
   }
 
 

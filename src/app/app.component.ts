@@ -1,4 +1,4 @@
-import { Component,Output,OnInit,EventEmitter } from '@angular/core';
+import { Component,Output,OnInit,EventEmitter,Input } from '@angular/core';
 import { GameComponent } from './game/game.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'quiz';
   score:number = 0;
   userName:string = "UserName";
+  @Input() showHeader = false;
   @Output() activate: EventEmitter<any>
 
   OnActivate(event:any):void {
@@ -22,6 +23,19 @@ export class AppComponent {
       this.score = parseInt(data) ;
     });
 
+      event.displayHeader.subscribe( (displayFlag)=>{
+      debugger;
+      console.log(displayFlag);
+      setTimeout(() => {
+        this.showHeader = displayFlag;
+
+      })
+
+
+    });
+
+
+
   }
   if(event instanceof WelcomeComponent){
     let welComp:WelcomeComponent = event;
@@ -29,7 +43,13 @@ export class AppComponent {
       console.log(data);
       this.userName = data ;
     });
+
+   }
+
+
+
   }
-  }
+
+
 }
 

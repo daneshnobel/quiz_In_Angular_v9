@@ -2,9 +2,9 @@
 
 </style>
 <div class="toolbar sticky-top" role="banner">
- <span class="score d-hidden">You Score: {{score}}</span>
+ <span class="score" [(class.dhidden)] = "!showHeader" >You Score: {{score}}</span>
  <span >Welcome To QuizTime</span>
- <span class="user d-hidden">{{userName}}</span>
+ <span class="user"   [style.visibility]= "!showHeader ? 'hidden':'inherit'">{{userName}}</span>
 </div>
 <div class="container d-flex justify-content-center align-items-center" role="main">
   <!-- Highlight Card -->
