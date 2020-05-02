@@ -3,7 +3,7 @@
 </style>
 <div class="toolbar sticky-top" role="banner">
  <span class="score" [(class.dhidden)] = "!showHeader" >You Score: {{score}}</span>
- <a [routerLink]="['/welcome']" >Welcome To QuizTime</a>
+ <a [routerLink]="['/welcome']" href="#" class="text-dark btn welcome" >Welcome To QuizTime</a>
  <span class="user"   [style.visibility]= "!showHeader ? 'hidden':'inherit'">{{userName}}</span>
 </div>
 <div class="container d-flex justify-content-center align-items-center" role="main">
