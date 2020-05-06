@@ -85,9 +85,50 @@ export class GameComponent implements OnInit {
     //     }
     // }
     // else{
-      this.message = "You have finished the Quiz !.Please click anywhere to return."
+      this.message = "You have finished the Quiz !"
       this.showOverlay = true;
-   // }
+      let temp = this.score;
+      //this.score =  0;
+//        function* delayedScoreDisplay(temp){
+//           var i:number =0
+//           for(i=0;i<=temp;i++){
+//           //this.score = i;
+//           //await this.sleep(1000);
+          
+//           yield i;
+//         }
+
+//       }
+//       let dd = delayedScoreDisplay(temp);
+//       function resolveAfter2Seconds() {
+//   return new Promise(resolve => {
+//     setTimeout(() => {
+//       resolve('resolved');
+//     }, 5000);
+//   });
+// }
+
+// async function asyncCall() {
+//   console.log('calling');
+//   const result = await resolveAfter2Seconds();
+//   console.log(result);
+//   // expected output: 'resolved'
+// }
+
+// const syncWait = ms => {
+//     const end = Date.now() + ms
+//     while (Date.now() < end) continue
+// }
+      // for(const item of dd){
+      //   console.log(item);
+      //  asyncCall();
+      //   this.score = item;
+        
+      // }
+      // while(delayedScoreDisplay(temp).next()!= undefined){
+      //   this.score = delayedScoreDisplay(temp).next().value;
+      // }
+      
 
   }
 
@@ -96,5 +137,9 @@ export class GameComponent implements OnInit {
    this.showOverlay = false;
   }
 
+  
+  sleep(ms):any{
+          return new Promise((resolve)=> setTimeout(resolve,ms));
+   }
 
 }
