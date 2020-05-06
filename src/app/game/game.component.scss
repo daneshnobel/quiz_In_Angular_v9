@@ -60,7 +60,9 @@
 
 #overlay {
   position: fixed; /* Sit on top of the page content */
-  display: none; /* Hidden by default */
+  
+  visibility: hidden;
+  opacity: 0;
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
@@ -70,14 +72,24 @@
   background-color: rgba(0,0,0,0.7); /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
+  &.active{
+  
+    visibility: visible!important;
+  opacity: 1!important;
+  
+  }
   .content{
-      margin:auto;
-
-      height:100px;
-      font-size:x-large;
+  margin:auto;
+  width: 300px;
+    height: 150px;
+      font-size:small;
       font-weight: bold;
-      color:#fff;
-
+      background: #fff;
+      color:black;
+       transition: 0.5s ease-in-out;
+      &.active{
+       transform: scale(2);
+      }
   }
 }
 

@@ -64,30 +64,30 @@ export class GameComponent implements OnInit {
   }
   nextQuestion(target):void{
     debugger;
-    if(this.totalQuestions !== this.questionIndex+1){
-      if(this.isQuestionAnswered === true){
-        this.isQuestionAnswered = false;
-        debugger;
-        let optionsArray = target.parentElement.parentElement.getElementsByClassName('option');
-        //remove the css from the options span
-        //target.
-        for(let option of optionsArray){
-          option.classList.remove('correct');
-          option.classList.remove('incorrect');
-        }
+    // if(this.totalQuestions !== this.questionIndex+1){
+    //   if(this.isQuestionAnswered === true){
+    //     this.isQuestionAnswered = false;
+    //     debugger;
+    //     let optionsArray = target.parentElement.parentElement.getElementsByClassName('option');
+    //     //remove the css from the options span
+    //     //target.
+    //     for(let option of optionsArray){
+    //       option.classList.remove('correct');
+    //       option.classList.remove('incorrect');
+    //     }
 
-        this.questionIndex = this.questionIndex+1;
-        this.ShowQuestion(this.questionIndex);
+    //     this.questionIndex = this.questionIndex+1;
+    //     this.ShowQuestion(this.questionIndex);
 
-        }
-        else{
-          console.log('Please answer the current question.')
-        }
-    }
-    else{
+    //     }
+    //     else{
+    //       console.log('Please answer the current question.')
+    //     }
+    // }
+    // else{
       this.message = "You have finished the Quiz !.Please click anywhere to return."
       this.showOverlay = true;
-    }
+   // }
 
   }
 
