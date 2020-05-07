@@ -28,7 +28,7 @@
       min-height: 45px;
       transition:all 1s;
       &:hover{
-        cursor: pointer;
+        cursor: pointer!important;
       }
       &.incorrect{
         color:#fff;
@@ -91,14 +91,15 @@
        transform: scale(2);
       }
 
+
       .buttons-panel{
         width:100%;
-        a{
+        button{
               border: 0;
     border-radius: 0;
     width: 75px;
     font-size: x-small;
-    height: 25px;
+    height: 30px;
     color: #fff;font-weight: 600;
         }
       }

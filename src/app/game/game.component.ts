@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,ElementRef,ViewChild } from '@angular/core';
+import{Router} from '@angular/router';
 import { QuestionsService } from '../questions.service';
 import {Question} from '../question';
 // import * as jQuery from 'jquery';
@@ -9,7 +10,7 @@ import {Question} from '../question';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-
+  @ViewChild('qcard') qCard:ElementRef;
   questions:Question[] = null;
   questionIndex:number = 0
   currQuestion:Question = null;
@@ -22,13 +23,14 @@ export class GameComponent implements OnInit {
    @Output() emitScore: EventEmitter<string> = new EventEmitter<string>();
    @Output() displayHeader: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private questionService : QuestionsService) {
+  constructor(private questionService : QuestionsService,private router:Router) {
   }
 
   ngOnInit(): void {
 
     // jQuery('.toolbar .user').removeClass('d-hidden');
     // jQuery('.toolbar .score').removeClass('d-hidden');
+   
     this.displayHeader.emit(true);
     this.questions = QuestionsService.getQuestions();
     this.currQuestion = null;
@@ -64,70 +66,31 @@ export class GameComponent implements OnInit {
   }
   nextQuestion(target):void{
     debugger;
-    // if(this.totalQuestions !== this.questionIndex+1){
-    //   if(this.isQuestionAnswered === true){
-    //     this.isQuestionAnswered = false;
-    //     debugger;
-    //     let optionsArray = target.parentElement.parentElement.getElementsByClassName('option');
-    //     //remove the css from the options span
-    //     //target.
-    //     for(let option of optionsArray){
-    //       option.classList.remove('correct');
-    //       option.classList.remove('incorrect');
-    //     }
+    if(this.totalQuestions !== this.questionIndex+1){
+      if(this.isQuestionAnswered === true){
+        this.isQuestionAnswered = false;
+        debugger;
+        let optionsArray = target.parentElement.parentElement.getElementsByClassName('option');
+        //remove the css from the options span
+        //target.
+        for(let option of optionsArray){
+          option.classList.remove('correct');
+          option.classList.remove('incorrect');
+        }
 
-    //     this.questionIndex = this.questionIndex+1;
-    //     this.ShowQuestion(this.questionIndex);
+        this.questionIndex = this.questionIndex+1;
+        this.ShowQuestion(this.questionIndex);
 
-    //     }
-    //     else{
-    //       console.log('Please answer the current question.')
-    //     }
-    // }
-    // else{
+        }
+        else{
+          console.log('Please answer the current question.')
+        }
+    }
+    else{
       this.message = "You have finished the Quiz !"
       this.showOverlay = true;
-      let temp = this.score;
-      //this.score =  0;
-//        function* delayedScoreDisplay(temp){
-//           var i:number =0
-//           for(i=0;i<=temp;i++){
-//           //this.score = i;
-//           //await this.sleep(1000);
-          
-//           yield i;
-//         }
-
-//       }
-//       let dd = delayedScoreDisplay(temp);
-//       function resolveAfter2Seconds() {
-//   return new Promise(resolve => {
-//     setTimeout(() => {
-//       resolve('resolved');
-//     }, 5000);
-//   });
-// }
-
-// async function asyncCall() {
-//   console.log('calling');
-//   const result = await resolveAfter2Seconds();
-//   console.log(result);
-//   // expected output: 'resolved'
-// }
-
-// const syncWait = ms => {
-//     const end = Date.now() + ms
-//     while (Date.now() < end) continue
-// }
-      // for(const item of dd){
-      //   console.log(item);
-      //  asyncCall();
-      //   this.score = item;
-        
-      // }
-      // while(delayedScoreDisplay(temp).next()!= undefined){
-      //   this.score = delayedScoreDisplay(temp).next().value;
-      // }
+   }
+    
       
 
   }
@@ -137,9 +100,32 @@ export class GameComponent implements OnInit {
    this.showOverlay = false;
   }
 
-  
-  sleep(ms):any{
-          return new Promise((resolve)=> setTimeout(resolve,ms));
-   }
+  Home():void{
+    this.overlayOff();
+    this.displayHeader.emit(false);
+    this.score = 0;
+    this.emitScore.emit(this.score.toString());
+    this.userName = 'userName';
+    this.router.navigate(['/welcome'])
+    
+  }
+
+  Retry():void{
+    this.overlayOff();
+    this.score = 0;
+    this.emitScore.emit(this.score.toString());
+    this.questionIndex  = 0;
+    this.isQuestionAnswered = false;
+    let optionsArray = this.qCard.nativeElement.getElementsByClassName('option');
+        for(let option of optionsArray){
+          option.classList.remove('correct');
+          option.classList.remove('incorrect');
+        }
+    this.ngOnInit();
+  }
+ 
+  // sleep(ms):any{
+  //         return new Promise((resolve)=> setTimeout(resolve,ms));
+  //  }
 
 }
